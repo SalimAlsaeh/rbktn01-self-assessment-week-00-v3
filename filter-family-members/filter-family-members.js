@@ -39,18 +39,38 @@
 //     }
 //   ]
 // };
-//
+
 // var livesInBerkeley = function (familyMember) {
 //   return familyMember.location === 'Berkeley';
 // }
-//
+
 // filterFamilyMembers(familyTree, livesInBerkeley)
-//
+
 // returns ['Beth Jr. Johnson', 'Joshie Wyattson'];
 
 
 
 var filterFamilyMembers = function (familyTree, truthTest) {
-  // All your code in this function body
+	// this array will hold all of the names
+	var names = [];
+	// this function has two if conditions, the first if checks if this particular node passes the truth test or not
+	// if so, it pushes the first and last name of the element to the names array.
+	// the second if checks if that element has children or not, if so, it loops through each elememnt and invoke the same function 
+	// recursevly to traverse through each element of the tree.
+
+	var getChlidrenByElement = function(element){
+		if (truthTest(element)) {
+			result.push(element.firstName + ' ' + element.lastName)
+		}
+
+		if (element.children) {
+			element.children.forEach(function(node){
+				getChlidrenByElement(node);
+			});
+		}
+	}
+	// to start the process // the ignition
+	getChlidrenByElement(familyTree);
+	return result;
 };
 
